@@ -52,6 +52,7 @@ export const defaultSettings: Settings = {
 	blurStats$: false,
 	enableLineAnimation$: false,
 	customCSS$: '',
+	customJS$: '(function (line) {\n    return line;\n})',
 };
 
 export const theme$ = writableStringSubject()('bannou-texthooker-theme', defaultSettings.theme$);
@@ -183,6 +184,8 @@ export const enableLineAnimation$ = writableBooleanSubject()(
 );
 
 export const customCSS$ = writableStringSubject()('bannou-texthooker-customCSS', defaultSettings.customCSS$);
+
+export const customJS$ = writableStringSubject()('bannou-texthooker-customJS', defaultSettings.customJS$);
 
 export const timeValue$ = writableNumberSubject()('bannou-texthooker-timeValue', 0, persistStats$);
 

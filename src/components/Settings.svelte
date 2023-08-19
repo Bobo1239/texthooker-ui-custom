@@ -21,6 +21,7 @@
 		blockCopyOnPage$,
 		blurStats$,
 		customCSS$,
+		customJS$,
 		dialogOpen$,
 		displayVertical$,
 		enableExternalClipboardMonitor$,
@@ -447,6 +448,10 @@
 	function handleCustomCSSBlur(event: FocusEvent) {
 		$customCSS$ = (event.target as HTMLTextAreaElement).value;
 	}
+
+	function handleCustomJSBlur(event: FocusEvent) {
+		$customJS$ = (event.target as HTMLTextAreaElement).value;
+	}
 </script>
 
 <svelte:head>
@@ -727,6 +732,14 @@
 			rows="5"
 			value={$customCSS$}
 			on:blur={handleCustomCSSBlur}
+		/>
+		<span class="label-text" style="grid-column: 1/5;">Custom JS</span>
+		<textarea
+			class="p-1 min-h-[10rem] font-mono"
+			style="grid-column: 1/5;"
+			rows="5"
+			value={$customJS$}
+			on:blur={handleCustomJSBlur}
 		/>
 	</div>
 {/if}

@@ -72,6 +72,7 @@ export interface Settings {
 	blurStats$: boolean;
 	enableLineAnimation$: boolean;
 	customCSS$: string;
+	customJS$: string;
 }
 
 export interface SettingPreset {
