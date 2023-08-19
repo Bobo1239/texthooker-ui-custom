@@ -42,6 +42,8 @@
 				if (wasConnected) {
 					$isPaused$ = true;
 				}
+
+				// NOTE: Can't implement automatic (re-)connection due to https://stackoverflow.com/a/59548772
 			}
 
 			intitialAttemptDone = true;
