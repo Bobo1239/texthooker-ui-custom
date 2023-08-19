@@ -86,6 +86,7 @@ export interface Settings {
 	showConnectionErrors$: boolean;
 	showConnectionIcon$: boolean;
 	customCSS$: string;
+	customJS$: string;
 }
 
 export interface ExportedData {

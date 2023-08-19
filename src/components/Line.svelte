@@ -8,6 +8,7 @@
 		milestoneLines$,
 		preserveWhitespace$,
 		reverseLineOrder$,
+		customJS$,
 	} from '../stores/stores';
 	import type { LineItem, LineItemEditEvent } from '../types';
 	import { dummyFn, newLineCharacter, updateScroll } from '../util';
@@ -94,6 +95,21 @@
 			});
 		}
 	}
+
+	function modifyLine(line: String) {
+		try {
+			let fn = eval(customJS$.value);
+			if (typeof(fn) == "function") {
+				return fn(line);
+			} else {
+				console.error("custom JS is not a valid anonymous function")
+				return line;
+			}
+		} catch (e) {
+			console.error("custom JS error: " + e);
+			return line;
+		}
+	}
 </script>
 
 {#key line.text}
@@ -114,7 +130,12 @@
 		bind:this={paragraph}
 		in:fly={{ x: isVerticalDisplay ? 100 : -100, duration: $enableLineAnimation$ ? 250 : 0 }}
 	>
-		{line.text}
+		<!-- TODO: Rerender automatically when customJS is changed (#key doesn't work somehow) -->
+		{#if isEditable}
+			{line.text}
+		{:else}
+			{@html modifyLine(line.text)}
+		{/if}
 	</p>
 {/key}
 {@html newLineCharacter}

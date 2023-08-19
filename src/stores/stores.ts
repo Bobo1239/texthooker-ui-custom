@@ -65,6 +65,7 @@ export const defaultSettings: Settings = {
 	showConnectionErrors$: true,
 	showConnectionIcon$: true,
 	customCSS$: '',
+	customJS$: 'function (line) {\n    return line;\n}',
 };
 
 export const theme$ = writableStringSubject()('bannou-texthooker-theme', defaultSettings.theme$);
@@ -247,6 +248,8 @@ export const showConnectionIcon$ = writableBooleanSubject()(
 );
 
 export const customCSS$ = writableStringSubject()('bannou-texthooker-customCSS', defaultSettings.customCSS$);
+
+export const customJS$ = writableStringSubject()('bannou-texthooker-customJS', defaultSettings.customJS$);
 
 export const timeValue$ = writableNumberSubject()('bannou-texthooker-timeValue', 0, persistStats$);
 

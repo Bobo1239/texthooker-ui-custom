@@ -23,6 +23,7 @@
 		characterMilestone$,
 		continuousReconnect$,
 		customCSS$,
+		customJS$,
 		dialogOpen$,
 		displayVertical$,
 		enableAfkBlur$,
@@ -587,6 +588,10 @@
 		$customCSS$ = (event.target as HTMLTextAreaElement).value;
 	}
 
+	function handleCustomJSBlur(event: FocusEvent) {
+		$customJS$ = (event.target as HTMLTextAreaElement).value;
+	}
+
 	async function handleImport(fileInput: HTMLInputElement, message: string) {
 		if (!$skipResetConfirmations$) {
 			const { canceled } = await new Promise<DialogResult>((resolve) => {
@@ -1008,6 +1013,14 @@
 			rows="5"
 			value={$customCSS$}
 			on:blur={handleCustomCSSBlur}
+		/>
+		<span class="label-text" style="grid-column: 1/5;">Custom JS</span>
+		<textarea
+			class="p-1 min-h-[10rem] font-mono"
+			style="grid-column: 1/5;"
+			rows="5"
+			value={$customJS$}
+			on:blur={handleCustomJSBlur}
 		/>
 	</div>
 {/if}
